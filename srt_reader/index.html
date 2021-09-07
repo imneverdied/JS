@@ -1,0 +1,37 @@
+<html>
+
+<label id="TEXT" style="display:none">222</label>
+<button id="BTN"  onclick="BBB()">讀字幕</button>
+</br>
+<label id="TEXT2">333</label>
+
+
+</html>
+<script src="https://imneverdied.github.io/jmespath/jmespath.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		var url = "MV.srt";
+		$(TEXT).load(url);
+	});
+
+
+	function BBB(){
+	
+	  var XXX =  $(TEXT).text();
+	  const strCopy = XXX.split('\n');
+      console.log(strCopy);
+	  
+	  $(TEXT2).text('');
+	  for(var i=0;i<strCopy.length;i++){
+	  $(TEXT2).append( strCopy[i]+"</br>")
+	  }
+	  
+	  
+	}
+		
+
+
+
+
+</script>
