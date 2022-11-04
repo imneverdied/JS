@@ -1,0 +1,24 @@
+ <html>
+
+<head>
+    <meta charset="utf-8">
+	 <script src="https://imneverdied.github.io/jmespath/jmespath.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+</head>
+<body>
+</body>
+ <script>
+$(document).ready(function(){
+	$(window).bind('mousewheel', function(e){
+		if(e.originalEvent.wheelDelta /120 > 0) {
+			console.log('scrolling up !');
+		}
+		else{
+			console.log('scrolling down !');
+		}
+	});
+})
+
+ </script>
+
+  </html>
