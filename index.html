@@ -1,20 +1,223 @@
-function changeColor() {
-  var elem = document.getElementById('para');
-  var newColor=elem.style.color;
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>桃園美食與景點 Instagram 影片</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <style>
+      /* 保持原有的 CSS 樣式 */
+      .filters {
+        margin-bottom: 20px;
+      }
+      .filter-group {
+        margin-bottom: 10px;
+      }
+      .filter-group div {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      #videos {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .video-item {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ffbfff;
+      }
+      .tag {
+        display: inline-block;
+        background-color: #ff8eff;
+        padding: 2px 5px;
+        margin-right: 5px;
+        border-radius: 3px;
+        font-size: 0.8em;
+      }
+      body {
+        background-color: #ffe6ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h1>桃園美食與景點 Instagram 影片</h1>
 
-  if(newColor=='blue')
-  {newColor='red'
-  }
-  else
-  {newColor='blue'}
-  
-  elem.style.color = newColor;
+      <div class="filters">
+        <div class="filter-group">
+          <label>選擇地區：</label>
+          <select v-model="selectedArea">
+            <option value="">全部地區</option>
+            <option v-for="area in areas" :value="area">{{ area }}</option>
+          </select>
+        </div>
 
-}
-function cColor(value) {
-  var elem = document.getElementById('para');
-  
-  elem.style.color = value;
-  elem.innerHTML=value;
+        <div class="filter-group">
+          <label>選擇標籤：</label>
+          <div v-for="tag in tags" :key="tag">
+            <input type="checkbox" :value="tag" v-model="selectedTags" />
+            <label>{{ tag }}</label>
+          </div>
+        </div>
+      </div>
 
-}
+      <div id="videos">
+        <div v-if="loading">正在加載數據...</div>
+        <div v-else-if="error">加載數據時出錯: {{ error }}</div>
+        <div v-else-if="filteredVideos.length === 0">
+          <p>沒有符合條件的影片</p>
+        </div>
+        <div
+          v-else
+          v-for="video in filteredVideos"
+          :key="video.id"
+          class="video-item"
+        >
+          <h3>{{ video.title }}</h3>
+          <p>地區: {{ video.area }}</p>
+          <p>
+            標籤:
+            <span v-for="tag in video.tags" :key="tag" class="tag"
+              >{{ tag }}</span
+            >
+          </p>
+          <p>店家地址: {{ video.address }}</p>
+          <p>
+            網址:
+            <a :href="video.website" target="_blank">{{ video.website }}</a>
+          </p>
+          <p>描述: {{ video.description }}</p>
+
+          <blockquote
+            class="instagram-media"
+            :data-instgrm-permalink="video.embedUrl"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+        </div>
+      </div>
+    </div>
+
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            selectedArea: '',
+            selectedTags: [],
+            areas: [
+              '中壢區',
+              '平鎮區',
+              '龍潭區',
+              '楊梅區',
+              '新屋區',
+              '觀音區',
+              '桃園區',
+              '龜山區',
+              '八德區',
+              '大溪區',
+              '復興區',
+              '大園區',
+              '蘆竹區',
+            ],
+            tags: [
+              '美食',
+              '小吃',
+              '餐廳',
+              '旅遊景點',
+              '火鍋',
+              '冰淇淋',
+              '露營',
+              '餐酒館',
+              '吃到飽',
+              '韓式',
+              '鹽酥雞',
+              '烤串',
+              '串燒',
+              '土雞城',
+              '日式料理',
+              '夜市',
+              '牛排',
+            ],
+            jsonData: [],
+            loading: true,
+            error: null,
+          };
+        },
+        computed: {
+          filteredVideos() {
+            return this.jsonData.filter((video) => {
+              const areaMatch =
+                !this.selectedArea || video.area === this.selectedArea;
+              const tagMatch =
+                this.selectedTags.length === 0 ||
+                this.selectedTags.every((tag) => video.tags.includes(tag));
+              return areaMatch && tagMatch;
+            });
+          },
+        },
+        watch: {
+          filteredVideos: {
+            handler() {
+              this.$nextTick(() => {
+                this.reloadInstagramEmbeds();
+              });
+            },
+            deep: true,
+          },
+        },
+        mounted() {
+          this.fetchData();
+        },
+        methods: {
+          async fetchData() {
+            try {
+              const response = await fetch(
+                'https://imneverdied.github.io/JS/data.json'
+              );
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              this.jsonData = await response.json();
+              this.loading = false;
+              this.$nextTick(() => {
+                this.reloadInstagramEmbeds();
+              });
+            } catch (error) {
+              this.error = error.message;
+              this.loading = false;
+            }
+          },
+          reloadInstagramEmbeds() {
+            if (window.instgrm) {
+              window.instgrm.Embeds.process();
+            } else {
+              // 如果 Instagram 嵌入腳本還沒有加載完成，我們等待一下再試
+              setTimeout(() => {
+                if (window.instgrm) {
+                  window.instgrm.Embeds.process();
+                }
+              }, 1000);
+            }
+          },
+        },
+      });
+
+      app.mount('#app');
+    </script>
+  </body>
+</html>
