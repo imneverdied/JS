@@ -39,6 +39,9 @@
       body {
         background-color: #ffe6ff;
       }
+      .address {
+        white-space: pre-line;
+      }
     </style>
   </head>
   <body>
@@ -83,7 +86,7 @@
               >{{ tag }}</span
             >
           </p>
-          <p>店家地址: {{ video.address }}</p>
+          <p class="address">店家地址: {{ video.address }}</p>
           <p>
             網址:
             <a :href="video.website" target="_blank">{{ video.website }}</a>
@@ -160,14 +163,19 @@
         },
         computed: {
           filteredVideos() {
-            return this.jsonData.filter((video) => {
-              const areaMatch =
-                !this.selectedArea || video.area === this.selectedArea;
-              const tagMatch =
-                this.selectedTags.length === 0 ||
-                this.selectedTags.every((tag) => video.tags.includes(tag));
-              return areaMatch && tagMatch;
-            });
+            return this.jsonData
+              .filter((video) => {
+                const areaMatch =
+                  !this.selectedArea || video.area === this.selectedArea;
+                const tagMatch =
+                  this.selectedTags.length === 0 ||
+                  this.selectedTags.every((tag) => video.tags.includes(tag));
+                return areaMatch && tagMatch;
+              })
+              .map((video) => ({
+                ...video,
+                address: video.address.replace(/<br>/g, '\n'),
+              }));
           },
         },
         watch: {
