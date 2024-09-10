@@ -42,6 +42,62 @@
       .address {
         white-space: pre-line;
       }
+      select,
+      input[type='checkbox'] {
+        background-color: #fff0ff;
+        border: 2px solid #ffbfff;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      select:hover,
+      input[type='checkbox']:hover {
+        border-color: #ff8eff;
+      }
+
+      select:focus,
+      input[type='checkbox']:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 142, 255, 0.3);
+      }
+
+      input[type='checkbox'] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+
+      input[type='checkbox']:checked {
+        background-color: #ff8eff;
+        position: relative;
+      }
+
+      input[type='checkbox']:checked::after {
+        content: '\2714';
+        font-size: 14px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+      }
+
+      label {
+        cursor: pointer;
+        margin-left: 5px;
+      }
+
+      .filter-group {
+        background-color: #fff0ff;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
     </style>
   </head>
   <body>
