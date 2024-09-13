@@ -7,6 +7,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
     <style>
       /* 保持原有的 CSS 樣式 */
+      @import url('https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css');
+      @import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
+      .h1 {
+        font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', '蘋方',
+          sans-serif;
+        font-weight: bold;
+      }
+
+      .weblink {
+        font-family: Comic Sans MS, 'Microsoft JhengHei', '微軟正黑體',
+          'PingFang TC', '蘋方', sans-serif;
+      }
       .filters {
         margin-bottom: 20px;
       }
@@ -30,15 +42,20 @@
       }
       .tag {
         display: inline-block;
+        font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+        font-weight: bold;
         background-color: #ff8eff;
         padding: 2px 5px;
         margin-right: 5px;
         border-radius: 3px;
-        font-size: 0.8em;
+        font-size: 1.2em;
       }
       body {
         background-color: #ffe6ff;
+        font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+        font-weight: bold;
       }
+
       .address {
         white-space: pre-line;
       }
@@ -102,7 +119,7 @@
   </head>
   <body>
     <div id="app">
-      <h1>桃園美食與景點 Instagram 影片</h1>
+      <h1 class="h1">桃園美食與景點 Instagram 影片</h1>
 
       <div class="filters">
         <div class="filter-group">
@@ -145,7 +162,9 @@
           <p class="address">店家地址: {{ video.address }}</p>
           <p>
             網址:
-            <a :href="video.website" target="_blank">{{ video.website }}</a>
+            <a :href="video.website" target="_blank" class="weblink"
+              >{{ video.website }}</a
+            >
           </p>
           <p>描述: {{ video.description }}</p>
 
