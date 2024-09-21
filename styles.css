@@ -1,0 +1,124 @@
+/* 保持原有的 CSS 樣式 */
+@import url('https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css');
+@import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
+
+.h1 {
+  font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', '蘋方',
+    sans-serif;
+  font-weight: bold;
+}
+
+.weblink {
+  font-family: Comic Sans MS, 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC',
+    '蘋方', sans-serif;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 10px;
+}
+
+.filter-group div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+#videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.video-item {
+  border: 1px solid rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f3efdd;
+}
+
+.tag {
+  display: inline-block;
+  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+  font-weight: bold;
+  background-color: #a3d5dc;
+  padding: 2px 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+  font-size: 1.2em;
+}
+
+body {
+  background-color: #e3e8eb;
+  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+  font-weight: bold;
+}
+
+.title {
+  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.address {
+  white-space: pre-line;
+}
+
+select,
+input[type='checkbox'] {
+  background-color: #f3efdd;
+  border: 2px solid #d3d5c9;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  color: rgb(51, 51, 51);
+}
+
+select:hover,
+input[type='checkbox']:hover {
+  border-color: #a3d5dc;
+}
+
+select:focus,
+input[type='checkbox']:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #a3d5dc;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+  background-color: #a3d5dc;
+  position: relative;
+}
+
+input[type='checkbox']:checked::after {
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+label {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.filter-group {
+  background-color: #f3eedb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
