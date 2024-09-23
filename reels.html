@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>桃園吃喝玩樂攻略</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.prod.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script async src="//www.instagram.com/embed.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/">桃園吃喝玩樂推薦</a>
+      <a href="/reels.html">桃園吃喝玩樂短片</a>
+    </nav>
+    <div id="app">
+      <h1 class="h1">桃園吃喝玩樂攻略</h1>
+
+      <div class="filters">
+        <div class="filter-group">
+          <label>選擇地區：</label>
+          <select v-model="selectedArea">
+            <option value="">全部地區</option>
+            <option v-for="area in areas" :value="area">{{ area }}</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>選擇標籤：</label>
+          <div v-for="tag in tags" :key="tag">
+            <input type="checkbox" :value="tag" v-model="selectedTags" />
+            <label>{{ tag }}</label>
+          </div>
+        </div>
+      </div>
+
+      <div id="videos">
+        <div v-if="loading">正在加載數據...</div>
+        <div v-else-if="error">加載數據時出錯: {{ error }}</div>
+        <div v-else-if="filteredVideos.length === 0">
+          <p>沒有符合條件的影片</p>
+        </div>
+        <div
+          v-else
+          v-for="video in filteredVideos"
+          :key="video.id"
+          class="video-item"
+        >
+          <h3 class="title">{{ video.title }}</h3>
+
+          <p>{{ video.description }}</p>
+          <p>地區: {{ video.area }}</p>
+          <p>
+            標籤:
+            <span v-for="tag in video.tags.split(',')" :key="tag" class="tag"
+              >{{ tag }}</span
+            >
+          </p>
+          <p class="address">地址: {{ video.address }}</p>
+
+          <blockquote
+            class="instagram-media"
+            :data-instgrm-permalink="video.embedUrl"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+        </div>
+      </div>
+    </div>
+
+    <script defer src="script.js"></script>
+  </body>
+</html>
