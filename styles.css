@@ -122,3 +122,43 @@ label {
   border-radius: 5px;
   margin-bottom: 15px;
 }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-color: #f3efdd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
+  font-weight: bold;
+}
+
+nav a {
+  display: inline-block;
+  min-width: 9rem;
+  padding: 0.75rem 1rem;
+  margin: 0.5rem;
+  border-radius: 0.3rem;
+  text-align: center;
+  text-decoration: none;
+  color: #333333;
+  background-color: #e3e8eb;
+  transition: all 0.3s ease;
+  font-size: 1.2em;
+  border: 2px solid #d3d5c9;
+}
+
+nav a:hover {
+  background-color: #a3d5dc;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-color: #a3d5dc;
+}
+
+nav a:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #a3d5dc;
+}
