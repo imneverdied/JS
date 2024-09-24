@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+/* 主要內容區域樣式 */
+#app {
+  padding: 20px;
+  background-color: white;
+}
 /* 影片區塊樣式 */
 .video-section {
   position: relative;
