@@ -67,14 +67,14 @@
           <h3 class="title">{{ video.title }}</h3>
 
           <p>{{ video.description }}</p>
-          <p>地區: {{ video.area }}</p>
+          <p>🌏地區: {{ video.area }}</p>
           <p>
-            標籤:
+            🔖標籤:
             <span v-for="tag in video.tags.split(',')" :key="tag" class="tag"
               >{{ tag }}</span
             >
           </p>
-          <p class="address">地址: {{ video.address }}</p>
+          <p class="address">🗺️地址: {{ video.address }}</p>
           <br />
 
           <blockquote
