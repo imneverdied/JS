@@ -1,11 +1,11 @@
 /* 保持原有的 CSS 樣式 */
-@import url('https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css');
-@import url('https://fonts.googleapis.com/earlyaccess/cwtexyen.css');
+@import url('https://fonts.googleapis.com/earlyaccess/notosans-tc.css');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Noto Sans TC', sans-serif; /* 設置全局字體為思源黑體 */
 }
 
 .title {
@@ -78,14 +78,11 @@
 }
 
 .h1 {
-  font-family: 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC', '蘋方',
-    sans-serif;
   font-weight: bold;
 }
 
 .weblink {
-  font-family: Comic Sans MS, 'Microsoft JhengHei', '微軟正黑體', 'PingFang TC',
-    '蘋方', sans-serif;
+  font-family: Comic Sans MS, sans-serif;
 }
 
 .filters {
@@ -116,7 +113,6 @@
 
 .tag {
   display: inline-block;
-  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
   font-weight: bold;
   background-color: #a3d5dc;
   padding: 2px 5px;
@@ -125,14 +121,7 @@
   font-size: 1.2em;
 }
 
-body {
-  background-color: #e3e8eb;
-  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
-  font-weight: bold;
-}
-
 .title {
-  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
   font-size: 24px;
   font-weight: bold;
 }
@@ -206,7 +195,6 @@ nav {
   padding: 1rem;
   background-color: #f3efdd;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'cwTeXYen', '微軟正黑體', 'PingFang TC', '蘋方', sans-serif;
   font-weight: bold;
 }
 
@@ -236,4 +224,48 @@ nav a:hover {
 nav a:focus {
   outline: none;
   box-shadow: 0 0 0 3px #a3d5dc;
+}
+
+/* 調整影片區塊佈局 */
+#videos {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(300px, 1fr)
+  ); /* 響應式網格佈局 */
+  gap: 20px; /* 增加影片間距 */
+}
+
+.video-item {
+  /* ... (原有樣式) ... */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 增加陰影效果 */
+  transition: all 0.3s ease; /* 增加過渡效果 */
+}
+
+.video-item:hover {
+  transform: translateY(-3px); /* 懸停時向上移動 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 加強陰影 */
+}
+
+/* 改善色彩搭配 */
+body {
+  background-color: #f0f0f0; /* 淺灰色背景 */
+}
+
+.video-item {
+  background-color: #fff; /* 白色卡片背景 */
+}
+
+.tag {
+  background-color: #e0e0e0; /* 淺灰色標籤背景 */
+  color: #333; /* 深灰色標籤文字 */
+}
+
+/* 優化字體 */
+body {
+  font-family: 'Noto Sans TC', sans-serif; /* 使用更現代的字體 */
+}
+
+.title {
+  font-family: 'Noto Serif TC', serif; /* 標題使用襯線字體 */
 }
