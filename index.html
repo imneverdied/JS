@@ -58,7 +58,23 @@
           <input type="text" v-model="searchQuery" placeholder="輸入關鍵字" />
         </div>
       </div>
-
+      <div
+        class="line-it-button"
+        data-lang="zh_Hant"
+        data-type="share-a"
+        data-env="REAL"
+        data-url="https://imneverdied.github.io/JS/"
+        data-color="default"
+        data-size="small"
+        data-count="true"
+        data-ver="3"
+        style="display: none"
+      ></div>
+      <script
+        src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js"
+        async="async"
+        defer="defer"
+      ></script>
       <div id="videos">
         <div v-if="loading">正在加載數據...</div>
         <div v-else-if="error">加載數據時出錯: {{ error }}</div>
